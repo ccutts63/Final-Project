@@ -10,6 +10,9 @@ Interface::~Interface() {
 
 }
 
+void Interface::run() {
+
+}
 
 //MANAGER FUNCTIONS
 Manager::Manager() : Interface() {
@@ -58,15 +61,14 @@ void Manager::run() {
 }
 
 void Manager::AddDepartment() {
-	char depName[20];
+	char depName[20];  // Local buffer safely on the stack
 
-	std::cout << "Enter New Departmewnt Name: ";
+	std::cout << "Enter New Department Name: ";
+	std::cin.ignore();
 	std::cin.getline(depName, 20);
 
-
-
 	if (strlen(depName) < 1) {
-		std::cout << "Departement name too short";
+		std::cout << "Department name too short";
 		return;
 	}
 
@@ -83,8 +85,8 @@ void Manager::AddDepartment() {
 	++totalDepartments;
 
 	std::cout << "Department added" << std::endl;
-
 }
+
 
 void Manager::ListDepartments() const {
 	std::cout << "Departments: " << std::endl;

@@ -8,12 +8,29 @@ Department::Department() {
 }
 
 Department::Department(const char* name) {
-	this->name = new char[strlen(name) + 1];
-	strcpy_s(this->name, 20, name);
-
+	size_t len = strlen(name) + 1;
+	this->name = new char[len];
+	strcpy_s(this->name, len, name);
 	items = nullptr;
 	totalItems = 0;
 }
+
+Department::Department(const Department& other) {
+	size_t len = strlen(other.name) + 1;
+	name = new char[len];
+	strcpy_s(name, len, other.name);
+}
+
+Department& Department::operator=(const Department& other) {
+	if (this != &other) {
+		delete[] name;
+		size_t len = strlen(other.name) + 1;
+		name = new char[len];
+		strcpy_s(name, len, other.name);
+	}
+	return *this;
+}
+
 
 Department::~Department() {
 	delete[] name;

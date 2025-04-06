@@ -21,6 +21,8 @@ public:
 
 	Department();
 	Department(const char* name);
+	Department(const Department& other);
+	Department& operator=(const Department& other);
 
 	~Department();
 

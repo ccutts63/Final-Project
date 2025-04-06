@@ -13,7 +13,7 @@ public:
 	virtual ~Interface();
 	const char* GetName() const;
 	int GetID() const;
-	virtual void run() = 0;
+	virtual void run();
 };
 
 class Manager : public Interface {
