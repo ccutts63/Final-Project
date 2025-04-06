@@ -1,9 +1,12 @@
+#include "product.h"
+
 #pragma once
 class Department
 {
 private:
+	
 	char* name;
-	//product class items//
+	Product* items;
 	int totalItems;
 public:
 	Department(const char* name);
@@ -13,6 +16,6 @@ public:
 	void ListItems() const;
 	const char* GetDepartmentName() const;
 	int GetTotalItems() const;
-	//void addItem(const Product* newItem);
+	void AddItem(const Product& newItem);
 };
 

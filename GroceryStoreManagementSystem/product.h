@@ -8,6 +8,7 @@ private:
 
 public:
 	//constructor and destructor
+	Product(); //defauult
 	Product(const char* name, double price, int quantity);
 	~Product();
 
