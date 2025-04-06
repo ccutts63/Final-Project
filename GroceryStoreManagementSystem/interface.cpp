@@ -121,8 +121,9 @@ void Manager::AddItemToDepartment(){
 
 	std::cin >> itemQuantity;
 
-	Product newItem(itemName, itemPrice, itemQuantity);
-	storeDepartments[selectedDepartment].AddItem(newItem);
+	Product* newItem = new Product(itemName, itemPrice, itemQuantity);
+	storeDepartments[selectedDepartment].AddItem(*newItem);
+	delete newItem;
 
 	std::cout << "Item added successfully!" << std::endl;
 }

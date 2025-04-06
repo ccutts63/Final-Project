@@ -16,7 +16,7 @@ Product::Product(const char* name, double price, int quantity) {
 }
 
 Product::~Product() {
-	delete[] name;
+	//delete[] name;
 }
 
 const char* Product::GetName() const {

@@ -15,11 +15,25 @@ Department::Department(const char* name) {
 	totalItems = 0;
 }
 
+
 Department::Department(const Department& other) {
 	size_t len = strlen(other.name) + 1;
 	name = new char[len];
 	strcpy_s(name, len, other.name);
+
+	totalItems = other.totalItems;
+
+	if (other.items != nullptr) {
+		items = new Product[totalItems];
+		for (int i = 0; i < totalItems; ++i) {
+			items[i] = other.items[i];  // Deep copy items
+		}
+	}
+	else {
+		items = nullptr;
+	}
 }
+
 
 Department& Department::operator=(const Department& other) {
 	if (this != &other) {
@@ -27,17 +41,20 @@ Department& Department::operator=(const Department& other) {
 		size_t len = strlen(other.name) + 1;
 		name = new char[len];
 		strcpy_s(name, len, other.name);
+		items = nullptr;
 	}
 	return *this;
 }
 
 
 Department::~Department() {
-	delete[] name;
-	delete[] items;
+	//delete[] name;
+	//delete[] items;
+
 }
 
 void Department::AddItem(const Product& newItem) {
+
 	Product* newArray = new Product[totalItems + 1];
 
 	for (int i = 0; i < totalItems; ++i) {
@@ -46,12 +63,16 @@ void Department::AddItem(const Product& newItem) {
 
 	newArray[totalItems] = newItem;
 
-	delete[] items;
+	if (sizeof items / sizeof items[0] > 1) {
+		delete[] items;
+	}
+	
 
 	items = newArray;
-	++totalItems;
 
+	++totalItems;
 }
+
 
 void Department::ListItems() const {
 	std::cout << "Items in department: " << name << std::endl;
