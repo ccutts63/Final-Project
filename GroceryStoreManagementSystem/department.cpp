@@ -1,10 +1,15 @@
 #include "department.h"
-#include <cstring>
-#include <iostream>
+
+Department::Department() {
+	name = nullptr;
+	items = nullptr;
+	totalItems = 0;
+
+}
 
 Department::Department(const char* name) {
 	this->name = new char[strlen(name) + 1];
-	strcpy(this->name, name);
+	strcpy_s(this->name, 20, name);
 
 	items = nullptr;
 	totalItems = 0;

@@ -1,6 +1,5 @@
 #include "product.h"
-#include <iostream>
-#include <cstring>
+
 
 Product::Product() {
 	name = nullptr;
@@ -11,7 +10,7 @@ Product::Product() {
 //need more coffee :(
 Product::Product(const char* name, double price, int quantity) {
 	this->name = new char[strlen(name) + 1];
-	strcpy(this->name, name);
+	strcpy_s(this->name, 20, name);
 	this->price = price;
 	this->quantity = quantity;
 }

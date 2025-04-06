@@ -1,4 +1,8 @@
 #pragma once
+
+#include <iostream>
+#include <cstring>
+
 class Product
 {
 private:
@@ -8,7 +12,7 @@ private:
 
 public:
 	//constructor and destructor
-	Product(); //defauult
+	Product();
 	Product(const char* name, double price, int quantity);
 	~Product();
 

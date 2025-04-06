@@ -1,14 +1,25 @@
+#pragma once
+
+#include <cstring>
+#include <iostream>
 #include "product.h"
 
-#pragma once
+
+
 class Department
 {
+protected:
+	
 private:
 	
 	char* name;
 	Product* items;
 	int totalItems;
+
 public:
+	
+
+	Department();
 	Department(const char* name);
 
 	~Department();
