@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <cstring>
-
+//
 class Product
 {
 private:
