@@ -1,6 +1,12 @@
 #include "cart.h"
 
-Cart::Cart() : products(nullptr), quantity(nullptr), itemCount(0), totalCost(0.0) {}
+Cart::Cart() : products(nullptr), quantity(nullptr) {
+	name[0] = '\0';
+	price = 0;
+	itemCount = 0;
+	totalCost = 0.0;
+
+}
 
 
 void Cart::AddItem(Product& product, int q) {
@@ -37,6 +43,11 @@ double Cart::GetTotalCost() const {
 }
 
 void Cart::DisplayCart() const {
+
+	if (products == nullptr) {
+		return;
+	}
+
 	std::cout << "Shopping Cart:" << std::endl;
 
 	for (int i = 0; i < itemCount; ++i) {

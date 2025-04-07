@@ -7,6 +7,7 @@
 Department* storeDepartments = nullptr;
 int totalDepartments = 0;
 
+
 using namespace std;
 
 int main() {

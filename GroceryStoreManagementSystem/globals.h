@@ -1,6 +1,6 @@
 #pragma once
 
-#include "cart.h"
+
 #include "department.h"
 
 extern Cart* myCart;

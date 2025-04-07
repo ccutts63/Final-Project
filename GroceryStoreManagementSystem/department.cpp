@@ -61,7 +61,7 @@ void Department::AddItem(const Product& newItem) {
 
 	newArray[totalItems] = newItem;
 
-	if (sizeof items / sizeof items[0] > 1) {
+	if (sizeof(items) / sizeof(items[0]) > 1) {
 		delete[] items;
 	}
 	

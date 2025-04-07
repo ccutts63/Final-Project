@@ -1,7 +1,7 @@
 #include "interface.h"
 
 const char* csvFile = "grocery.csv";
-Cart* myCart;
+Cart* myCart = nullptr;
 
 Interface::Interface(){
 
@@ -12,7 +12,6 @@ Interface::~Interface() {
 }
 
 void Interface::run() {
-
 }
 
 void Interface::ListDepartments() const {
@@ -42,7 +41,7 @@ void Manager::run() {
 		std::cout << "3. Add Item to Department\n";
 		std::cout << "4. Save Changes to CSV\n";
 		std::cout << "5. Load Data From CSV\n";
-		std::cout << "5. Exit\n";
+		std::cout << "6. Exit\n";
 		std::cout << "Enter your choice [1-5]: ";
 
 		std::cin >> choice;
@@ -236,10 +235,11 @@ int Manager::SaveChangesToCsv()
 
 
 void Customer::run() {
+	myCart = new Cart();
 
 	int choice = 0;
 
-	while (choice < 1 || choice > 3) {
+	while (true) {
 		std::cout << "\nCustomer Menu:\n";
 		std::cout << "1. Show Cart\n";
 		std::cout << "2. Browse Departments\n";
@@ -262,6 +262,7 @@ void Customer::run() {
 			std::cout << "Invalid Input\n";
 			break;
 		}
+
 	}
 
 }
@@ -320,14 +321,14 @@ void Customer::BrowseDepartments() {
 	while (choice > totalDepartments || choice < 0) {
 		std::cout << "Enter Department Number [0 to go Back]\n";
 
-
+		std::cin >> choice;
 	}
 
 	if (choice == 0) {
 		return;
 	}
 
-	deptNum = choice;
+	deptNum = --choice;
 
 	storeDepartments[choice].ListItems();
 
@@ -352,15 +353,18 @@ void Customer::BrowseDepartments() {
 	while (choice > storeDepartments[deptNum].GetTotalItems() || choice < 0) {
 		std::cout << "Enter Item Number to buy [0 to go Back]\n";
 
+		std::cin >> choice;
+
 	}
 
-	itemNum = choice;
+	itemNum = --choice;
 
 	choice = 0;
 
 	while (choice < 1) {
 		std::cout << "Enter Quantity to buy: ";
 
+		std::cin >> choice;
 		
 	}
 
