@@ -38,7 +38,4 @@ void Product::Set(const char* name, double price, int quantity) {
 	this->quantity = quantity;
 }
 
-void Product::PrintDetails() const {
-	std::cout << "Name: " << name << ", Price: " << price << ". Quantity: "
-		<< quantity << std::endl;
-}
+

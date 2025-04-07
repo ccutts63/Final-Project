@@ -1,6 +1,7 @@
 #include "interface.h"
 
-const char* csvFile = ".\grocery.csv";
+const char* csvFile = "grocery.csv";
+Cart* myCart;
 
 Interface::Interface(){
 
@@ -12,6 +13,14 @@ Interface::~Interface() {
 
 void Interface::run() {
 
+}
+
+void Interface::ListDepartments() const {
+	std::cout << "Departments: " << std::endl;
+
+	for (int i = 0; i < totalDepartments; ++i) {
+		std::cout << "[" << (i + 1) << "] " << storeDepartments[i].GetName() << std::endl;
+	}
 }
 
 //MANAGER FUNCTIONS
@@ -91,14 +100,6 @@ void Manager::AddDepartment() {
 	std::cout << "Department added" << std::endl;
 }
 
-
-void Manager::ListDepartments() const {
-	std::cout << "Departments: " << std::endl;
-
-	for (int i = 0; i < totalDepartments; ++i) {
-		std::cout << "[" << (i + 1) << "] " << storeDepartments[i].GetName();
-	}
-}
 
 void Manager::AddItemToDepartment(){
 
@@ -190,6 +191,7 @@ int Manager::LoadDataFromCsv()
 		}
 		storeDepartments[d].SetDepartmentInfo(depName.c_str(), P, pCount);
 	}
+	return 0;
 }
 
 int Manager::SaveChangesToCsv()
@@ -205,7 +207,7 @@ int Manager::SaveChangesToCsv()
 
 	for (int d = 0; d < totalDepartments; d++)
 	{
-		const Department& dept = storeDepartments[d];
+		Department& dept = storeDepartments[d];
 		const char* depName = dept.GetName();  // Assuming a getter like this exists
 		int pCount = dept.GetTotalItems();   // Assuming this returns product count
 
@@ -232,17 +234,143 @@ int Manager::SaveChangesToCsv()
 
 //Customer FUNCTIONS
 
-Customer::Customer() : Interface() {
-
-}
-
-Customer::~Customer() {
-
-}
 
 void Customer::run() {
-	// Your implementation for customer menu
-	std::cout << "Running customer interface...\n";
+
+	int choice = 0;
+
+	while (choice < 1 || choice > 3) {
+		std::cout << "\nCustomer Menu:\n";
+		std::cout << "1. Show Cart\n";
+		std::cout << "2. Browse Departments\n";
+		std::cout << "3. Exit\n";
+		std::cout << "Enter your choice [1-3]: ";
+
+		std::cin >> choice;
+
+		switch (choice) {
+		case 1:
+			ShowCart();
+			break;
+		case 2:
+			BrowseDepartments();
+			break;
+		case 3:
+			return;
+			break;
+		default:
+			std::cout << "Invalid Input\n";
+			break;
+		}
+	}
+
 }
+
+void Customer::ShowCart() {
+	int choice = 0;
+
+	while (choice < 1 || choice > 3) {
+		std::cout << "\nCart Menu:\n";
+		std::cout << "1. List Items\n";
+		std::cout << "2. Checkout\n";
+		std::cout << "3. Exit\n";
+		std::cout << "Enter your choice [1-3]: ";
+
+		std::cin >> choice;
+
+		switch (choice) {
+		case 1:
+			myCart->DisplayCart();
+			break;
+		case 2:
+			myCart->Checkout();
+			break;
+		case 3:
+			return;
+			break;
+		default:
+			std::cout << "Invalid Input\n";
+			break;
+		}
+	}
+}
+
+void Customer::BrowseDepartments() {
+	int choice = 0;
+	int deptNum;
+	int itemNum;
+
+	while (choice != 1 && choice != 2) {
+		ListDepartments();
+
+		std::cout << "\n[1] List Items of a Department\n";
+		std::cout << "[2] Main Menu\n";
+		std::cout << "Enter your choice [1, 2]\n";
+
+		std::cin >> choice;
+
+	}
+	
+	if (choice == 2) {
+		return;
+	}
+
+	choice = -1;
+
+	while (choice > totalDepartments || choice < 0) {
+		std::cout << "Enter Department Number [0 to go Back]\n";
+
+
+	}
+
+	if (choice == 0) {
+		return;
+	}
+
+	deptNum = choice;
+
+	storeDepartments[choice].ListItems();
+
+	choice = 0;
+
+	while (choice != 1 && choice != 2) {
+
+		std::cout << "\n[1] Cart an Item\n";
+		std::cout << "[2] Back\n";
+		std::cout << "Enter your choice [1, 2]\n";
+
+		std::cin >> choice;
+
+	}
+
+	if (choice == 2) {
+		return;
+	}
+
+	choice = -1;
+
+	while (choice > storeDepartments[deptNum].GetTotalItems() || choice < 0) {
+		std::cout << "Enter Item Number to buy [0 to go Back]\n";
+
+	}
+
+	itemNum = choice;
+
+	choice = 0;
+
+	while (choice < 1) {
+		std::cout << "Enter Quantity to buy: ";
+
+		
+	}
+
+	myCart->AddItem(storeDepartments[deptNum].GetProduct(itemNum), choice);
+	
+	std::cout << "Item Added to Cart!";
+
+	return;
+	
+}
+
 
 

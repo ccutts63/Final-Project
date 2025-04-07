@@ -1,5 +1,6 @@
 #pragma once
 
+#include "cart.h"
 #include "globals.h"
 #include <iostream>
 #include "department.h"
@@ -14,14 +15,12 @@ protected:
 public:
 	Interface();
 	virtual ~Interface();
-	const char* GetName() const;
-	int GetID() const;
+	void ListDepartments() const;
 	virtual void run();
 };
 
 class Manager : public Interface {
 private:
-	void ListDepartments() const;
 	void AddDepartment();
 	void AddItemToDepartment();
 	int SaveChangesToCsv();
@@ -36,10 +35,9 @@ public:
 
 class Customer : public Interface {
 public:
-	Customer();
-	virtual ~Customer();
 	void run() override;
 
 protected:
-
+	void ShowCart();
+	void BrowseDepartments();
 };

@@ -27,7 +27,7 @@ public:
 
 	~Department();
 
-	const Product& GetProduct(int i) const;
+	Product& GetProduct(int i);
 	void ListItems() const;
 	const char* GetName() const;
 	int GetTotalItems() const;

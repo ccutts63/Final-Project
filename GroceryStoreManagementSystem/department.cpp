@@ -75,7 +75,7 @@ void Department::AddItem(const Product& newItem) {
 void Department::ListItems() const {
 	std::cout << "Items in department: " << name << std::endl;
 	for (int i = 0; i < totalItems; ++i) {
-		//std::cout << "[" << (i + 1) << "] " << items[i].PrintDetails();
+		std::cout << "[" << (i + 1) << "] " << "Name: " << items[i].GetName() << " $" << items[i].GetPrice() << std::endl;
 	}
 }
 
@@ -93,6 +93,6 @@ void Department::SetDepartmentInfo(const char* depName, Product* P, int pCount) 
 	AddItem(*P);
 }
 
-const Product& Department::GetProduct(int i) const {
+Product& Department::GetProduct(int i) {
 	return items[i];
 }

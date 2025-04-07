@@ -21,7 +21,6 @@ public:
 	double GetPrice() const;
 	int GetQuantity() const;
 	void Set(const char* name, double price, int quantity);
-	void PrintDetails() const;
 
 };
 
