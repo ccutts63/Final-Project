@@ -2,21 +2,22 @@
 
 
 Product::Product() {
-	name = nullptr;
+	name = new char[20];
+	name[0] = '\0';
 	price = 0.0;
 	quantity = 0;
 }
 
 //need more coffee :(
 Product::Product(const char* name, double price, int quantity) {
-	this->name = new char[strlen(name) + 1];
+	this->name = new char[20];
 	strcpy_s(this->name, 20, name);
 	this->price = price;
 	this->quantity = quantity;
 }
 
 Product::~Product() {
-	//delete[] name;
+	delete[] name;
 }
 
 const char* Product::GetName() const {
@@ -31,12 +32,10 @@ int Product::GetQuantity() const {
 	return quantity;
 }
 
-void Product::SetPrice(double newPrice) {
-	price = newPrice;
-}
-
-void Product::SetQuantity(int newQuantity) {
-	quantity = newQuantity;
+void Product::Set(const char* name, double price, int quantity) {
+	strcpy_s(this->name, 20, name);
+	this->price = price;
+	this->quantity = quantity;
 }
 
 void Product::PrintDetails() const {

@@ -18,6 +18,7 @@ private:
 
 public:
 	
+	void SetDepartmentInfo(const char* depName, Product* P, int pCount);
 
 	Department();
 	Department(const char* name);
@@ -26,8 +27,9 @@ public:
 
 	~Department();
 
+	const Product& GetProduct(int i) const;
 	void ListItems() const;
-	const char* GetDepartmentName() const;
+	const char* GetName() const;
 	int GetTotalItems() const;
 	void AddItem(const Product& newItem);
 };

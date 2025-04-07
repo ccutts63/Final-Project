@@ -1,25 +1,24 @@
 #include "department.h"
 
 Department::Department() {
-	name = nullptr;
+	name = new char[20];
+	name[0] = '\0';
 	items = nullptr;
 	totalItems = 0;
 
 }
 
 Department::Department(const char* name) {
-	size_t len = strlen(name) + 1;
-	this->name = new char[len];
-	strcpy_s(this->name, len, name);
+	this->name = new char[20];
+	strcpy_s(this->name, 20, name);
 	items = nullptr;
 	totalItems = 0;
 }
 
 
 Department::Department(const Department& other) {
-	size_t len = strlen(other.name) + 1;
-	name = new char[len];
-	strcpy_s(name, len, other.name);
+	name = new char[20];
+	strcpy_s(this->name, 20, other.name);
 
 	totalItems = other.totalItems;
 
@@ -38,9 +37,8 @@ Department::Department(const Department& other) {
 Department& Department::operator=(const Department& other) {
 	if (this != &other) {
 		delete[] name;
-		size_t len = strlen(other.name) + 1;
-		name = new char[len];
-		strcpy_s(name, len, other.name);
+		name = new char[20];
+		strcpy_s(name, 20, other.name);
 		items = nullptr;
 	}
 	return *this;
@@ -81,10 +79,20 @@ void Department::ListItems() const {
 	}
 }
 
-const char* Department::GetDepartmentName() const {
+const char* Department::GetName() const {
 	return name;
 }
 
 int Department::GetTotalItems() const {
 	return totalItems;
+}
+
+void Department::SetDepartmentInfo(const char* depName, Product* P, int pCount) {
+
+	strcpy_s(name, 20, depName);
+	AddItem(*P);
+}
+
+const Product& Department::GetProduct(int i) const {
+	return items[i];
 }

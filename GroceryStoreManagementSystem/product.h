@@ -20,8 +20,7 @@ public:
 	const char* GetName() const;
 	double GetPrice() const;
 	int GetQuantity() const;
-	void SetPrice(double newPrice);
-	void SetQuantity(int newQuantity);
+	void Set(const char* name, double price, int quantity);
 	void PrintDetails() const;
 
 };

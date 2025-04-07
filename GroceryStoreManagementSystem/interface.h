@@ -3,6 +3,9 @@
 #include "globals.h"
 #include <iostream>
 #include "department.h"
+#include <fstream>
+#include <string>
+#include <sstream>
 
 class Interface
 {
@@ -21,7 +24,8 @@ private:
 	void ListDepartments() const;
 	void AddDepartment();
 	void AddItemToDepartment();
-	void SaveChangesToCsv();
+	int SaveChangesToCsv();
+	int LoadDataFromCsv();
 
 public:
 	Manager();

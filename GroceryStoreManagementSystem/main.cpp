@@ -3,9 +3,9 @@
 #include <iostream>
 #include "globals.h"
 
+
 Department* storeDepartments = nullptr;
 int totalDepartments = 0;
-const char* csvFile = "";
 
 using namespace std;
 
@@ -25,9 +25,13 @@ int main() {
 		switch (choice) {
 		case 1:
 			userInterface = new Customer();
+			userInterface->run();
+			delete userInterface;
 			break;
 		case 2:
 			userInterface = new Manager();
+			userInterface->run();
+			delete userInterface;
 			break;
 		case 3:
 			cout << "Exiting...";
@@ -37,11 +41,9 @@ int main() {
 			break;
 		}
 
-		userInterface->run();
-
-		delete userInterface;
-
 	}
+
 
 	return 0;
 }
+
